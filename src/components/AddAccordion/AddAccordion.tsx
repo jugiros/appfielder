@@ -9,22 +9,20 @@ import {
   Tooltip
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {blue, red} from '@mui/material/colors';
 import {UrlItem} from "../../reducers/StateUrlReducer"
 
-const AddAccordion = ({urlItem}: { urlItem: UrlItem }) => {
+interface AddAccordionProps {
+  urlItem: UrlItem;
+  onDelete: (url: string) => void;
+}
 
-  const handleRefresh = () => {
-    // Lógica para actualizar
-    console.log('Acción de actualización realizada');
-  };
+const AddAccordion = ({urlItem, onDelete}: AddAccordionProps) => {
 
-  const handleDelete = () => {
-    // Lógica para eliminar
-    console.log('Acción de eliminación realizada');
+  const handleDelete = (url: string) => {
+    onDelete(url);
   };
 
   return (
@@ -38,17 +36,12 @@ const AddAccordion = ({urlItem}: { urlItem: UrlItem }) => {
               <Typography variant="subtitle1">{urlItem.url}</Typography>
             </Grid>
           </Grid>
-          <FiberManualRecordIcon className={'img-verify'}/>
+          <FiberManualRecordIcon className={urlItem.state ? 'img-verify' : 'img-verify-error'}/>
           <Typography className={'txt-verify'}>
             {urlItem.state ? 'EN LÍNEA' : 'DESCONECTADO'}
           </Typography>
-          <Tooltip title="Actualizar">
-            <IconButton size="small" onClick={handleRefresh} style={{color: blue[500]}}>
-              <RefreshIcon fontSize="small"/>
-            </IconButton>
-          </Tooltip>
           <Tooltip title="Eliminar">
-            <IconButton size="small" onClick={handleDelete} style={{color: red[500]}}>
+            <IconButton size="small" onClick={() => handleDelete(urlItem.url)} style={{color: red[500]}}>
               <DeleteIcon fontSize="small"/>
             </IconButton>
           </Tooltip>
