@@ -30,21 +30,23 @@ const AddAccordion = ({urlItem, onDelete}: AddAccordionProps) => {
         <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
           <Grid container direction="column">
             <Grid item>
-              <Typography variant="h6" sx={{ fontSize: { xs: '10px', sm: '14px', md: '28px' } }}>{urlItem.name}</Typography>
+              <Typography variant="h6" sx={{ fontSize: { xs: '10px', sm: '14px' } }}><strong>{urlItem.name}</strong></Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1" sx={{ fontSize: { xs: '10px', sm: '14px', md: '28px' } }}>{urlItem.url}</Typography>
+              <Typography variant="subtitle1" sx={{ fontSize: { xs: '10px', sm: '14px' } }}>{urlItem.url}</Typography>
             </Grid>
           </Grid>
-          <FiberManualRecordIcon className={urlItem.state ? 'img-verify' : 'img-verify-error'}/>
-          <Typography className={'txt-verify'}>
-            {urlItem.state ? 'EN LÍNEA' : 'DESCONECTADO'}
-          </Typography>
-          <Tooltip title="Eliminar">
-            <IconButton size="small" onClick={() => handleDelete(urlItem.url)} style={{color: red[500]}}>
-              <DeleteIcon fontSize="small"/>
-            </IconButton>
-          </Tooltip>
+          <Grid item xs={6} sm={3} className="center-vertical"> {/* Centra verticalmente */}
+            <FiberManualRecordIcon className={urlItem.state ? 'img-verify' : 'img-verify-error'} />
+            <Typography className={'txt-verify'}>
+              {urlItem.state ? 'EN LÍNEA' : 'DESCONECTADO'}
+            </Typography>
+            <Tooltip title="Eliminar">
+              <IconButton size="small" onClick={() => handleDelete(urlItem.url)} style={{ color: red[500] }}>
+                <DeleteIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Grid>
         </AccordionSummary>
         <AccordionDetails>
           <p>{urlItem.data}</p>
