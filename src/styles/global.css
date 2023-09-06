@@ -5,6 +5,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+#root {
+  width: 100%;
+}
+.MuiTextField-root {
+  width: 100%;
+}
 .modal-add {
   position: absolute;
   top: 50%;
@@ -16,6 +22,15 @@ body {
   padding: 20px;
   border: none;
 }
-.MuiTextField-root {
-  width: 100%;
+.txt-verify {
+  font-size: 8px !important;
+  font-weight: bold !important;
+  color: gray;
+  padding-top: 25px !important;
+  width: 50px !important;
+}
+.img-verify {
+  font-size: 12px !important;
+  color: green;
+  padding: 23px 0px 0px 0px !important;
 }

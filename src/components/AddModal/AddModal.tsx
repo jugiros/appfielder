@@ -32,7 +32,7 @@ const AddModal: React.FC<ModalProps> = ({ open, onClose, onAdd }) => {
             </Grid>
             <Grid item xs={12} container justifyContent="center">
               <Button variant="contained" color="primary" onClick={handleAdd}>
-                Agregar
+                Verificar
               </Button>
             </Grid>
           </Grid>
