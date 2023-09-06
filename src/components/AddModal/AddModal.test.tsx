@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import AddModal from './AddModal';
+import AddModal from "./AddModal";
 
 describe('AddModal', () => {
   test('renders AddModal component', () => {
