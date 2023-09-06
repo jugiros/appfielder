@@ -1,9 +1,11 @@
-export async function validUrl(url: string, index: number): Promise<boolean> {
+export async function validUrl(url: string): Promise<boolean> {
   try {
-    const response = await fetch(url, { method: 'HEAD' });
-    return response.ok;
+    const response = await fetch(url, {method: 'HEAD'});
+    if (!response.ok) {
+      return false;
+    }
+    return true;
   } catch (error) {
-    console.error(error);
     return false;
   }
 }
