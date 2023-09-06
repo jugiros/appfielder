@@ -29,7 +29,7 @@ const Home = () => {
           name,
           url,
           state: isValid,
-          data: 'Datos de prueba',
+          data: isValid ? 'URL en línea.' : 'No hay información para mostrar',
         },
       };
       dispatch(action);
