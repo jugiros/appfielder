@@ -1,4 +1,4 @@
-import { Reducer } from 'redux';
+import {Reducer} from 'redux';
 
 export interface StateUrlState {
   urls: UrlItem[];
@@ -12,21 +12,21 @@ export interface UrlItem {
 }
 
 const initialState: StateUrlState = {
-  urls: [
-    { name: 'Google', url: 'https://google.com', state: true, data: 'Datos de prueba' },
-    { name: 'Prueba 1', url: 'https://prueba.com', state: true, data: 'Datos de prueba 1' }
-  ]
+  urls: []
 };
 
-// Definir las acciones
-interface AddUrlAction {
+export interface AddUrlAction {
   type: 'ADD_URL';
   payload: UrlItem;
 }
 
-type StateUrlAction = AddUrlAction;
+export interface DeleteUrlAction {
+  type: 'DELETE_URL';
+  payload: string;
+}
 
-// Definir el reducer
+type StateUrlAction = AddUrlAction | DeleteUrlAction;
+
 const StateUrlReducer: Reducer<StateUrlState, StateUrlAction> = (
     state = initialState,
     action
@@ -36,6 +36,11 @@ const StateUrlReducer: Reducer<StateUrlState, StateUrlAction> = (
       return {
         ...state,
         urls: [...state.urls, action.payload]
+      };
+    case 'DELETE_URL':
+      return {
+        ...state,
+        urls: state.urls.filter((url) => url.url !== action.payload),
       };
     default:
       return state;
