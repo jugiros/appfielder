@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-mock-store": "^1.0.3",
     "@typescript-eslint/parser": "^5.62.0",
     "jest": "^29.6.4"
   }
