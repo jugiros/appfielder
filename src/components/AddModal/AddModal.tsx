@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Modal, TextField } from '@mui/material';
+import { Box, Button, Grid, Modal, TextField } from '@mui/material';
 
 interface ModalProps {
   open: boolean;
@@ -20,15 +20,22 @@ const AddModal: React.FC<ModalProps> = ({ open, onClose, onAdd }) => {
       <Modal open={open} onClose={onClose}>
         <Box className={"modal-add"}>
           <h2>Ingresa la URL</h2>
-          <TextField
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              label="URL"
-              variant="outlined"
-          />
-          <Button variant="contained" color="primary" onClick={handleAdd}>
-            Agregar
-          </Button>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  label="URL"
+                  variant="outlined"
+                  fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} container justifyContent="center">
+              <Button variant="contained" color="primary" onClick={handleAdd}>
+                Agregar
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       </Modal>
   );

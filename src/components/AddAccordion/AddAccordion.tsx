@@ -1,13 +1,19 @@
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography, TextField } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, TextField, Grid } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const AddAccordion = () => {
   return (
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6">Título del Accordion</Typography>
-          <Typography variant="subtitle1">Subtítulo del Accordion</Typography>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="h6">Título del Accordion</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1">Subtítulo del Accordion</Typography>
+            </Grid>
+          </Grid>
         </AccordionSummary>
         <AccordionDetails>
           <TextField label="Textarea" multiline />
