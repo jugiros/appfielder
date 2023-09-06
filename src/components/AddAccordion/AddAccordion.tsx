@@ -30,10 +30,10 @@ const AddAccordion = ({urlItem, onDelete}: AddAccordionProps) => {
         <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
           <Grid container direction="column">
             <Grid item>
-              <Typography variant="h6">{urlItem.name}</Typography>
+              <Typography variant="h6" sx={{ fontSize: { xs: '10px', sm: '14px', md: '28px' } }}>{urlItem.name}</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">{urlItem.url}</Typography>
+              <Typography variant="subtitle1" sx={{ fontSize: { xs: '10px', sm: '14px', md: '28px' } }}>{urlItem.url}</Typography>
             </Grid>
           </Grid>
           <FiberManualRecordIcon className={urlItem.state ? 'img-verify' : 'img-verify-error'}/>
