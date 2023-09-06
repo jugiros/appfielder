@@ -1,10 +1,11 @@
 import { Reducer } from 'redux';
 
-interface StateUrlState {
+export interface StateUrlState {
   urls: UrlItem[];
 }
 
-interface UrlItem {
+export interface UrlItem {
+  name: string;
   url: string;
   state: boolean;
   data: string;
@@ -12,7 +13,8 @@ interface UrlItem {
 
 const initialState: StateUrlState = {
   urls: [
-    { url: 'https://google.com', state: true, data: 'Datos de prueba' }
+    { name: 'Google', url: 'https://google.com', state: true, data: 'Datos de prueba' },
+    { name: 'Prueba 1', url: 'https://prueba.com', state: true, data: 'Datos de prueba 1' }
   ]
 };
 
@@ -22,23 +24,7 @@ interface AddUrlAction {
   payload: UrlItem;
 }
 
-interface UpdateStateAction {
-  type: 'UPDATE_STATE';
-  payload: {
-    index: number;
-    state: boolean;
-  };
-}
-
-interface UpdateDataAction {
-  type: 'UPDATE_DATA';
-  payload: {
-    index: number;
-    data: string;
-  };
-}
-
-type StateUrlAction = AddUrlAction | UpdateStateAction | UpdateDataAction;
+type StateUrlAction = AddUrlAction;
 
 // Definir el reducer
 const StateUrlReducer: Reducer<StateUrlState, StateUrlAction> = (
@@ -50,24 +36,6 @@ const StateUrlReducer: Reducer<StateUrlState, StateUrlAction> = (
       return {
         ...state,
         urls: [...state.urls, action.payload]
-      };
-    case 'UPDATE_STATE':
-      return {
-        ...state,
-        urls: state.urls.map((urlItem, index) =>
-            index === action.payload.index
-                ? { ...urlItem, state: action.payload.state }
-                : urlItem
-        )
-      };
-    case 'UPDATE_DATA':
-      return {
-        ...state,
-        urls: state.urls.map((urlItem, index) =>
-            index === action.payload.index
-                ? { ...urlItem, data: action.payload.data }
-                : urlItem
-        )
       };
     default:
       return state;
