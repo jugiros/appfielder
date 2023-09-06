@@ -9,7 +9,7 @@ interface ModalProps {
   onAdd: (url: string, name: string) => void;
 }
 
-const AddModal: React.FC<ModalProps> = ({open, onClose, onAdd}) => {
+const AddModal = ({open, onClose, onAdd}: ModalProps) => {
   const initialValues = {
     url: '',
     name: '',
@@ -17,8 +17,8 @@ const AddModal: React.FC<ModalProps> = ({open, onClose, onAdd}) => {
 
   const validationSchema = Yup.object({
     url: Yup.string()
-        .required('URL es requerida'),
-    name: Yup.string().required('Nombre es requerido'),
+        .required('La URL es requerida'),
+    name: Yup.string().required('El nombre es requerido'),
   });
 
   const handleSubmit = (values: { url: string; name: string }) => {
