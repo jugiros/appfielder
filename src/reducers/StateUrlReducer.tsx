@@ -25,9 +25,9 @@ export interface DeleteUrlAction {
   payload: string;
 }
 
-type StateUrlAction = AddUrlAction | DeleteUrlAction;
+export type StateUrlAction = AddUrlAction | DeleteUrlAction;
 
-const StateUrlReducer: Reducer<StateUrlState, StateUrlAction> = (
+export const StateUrlReducer: Reducer<StateUrlState, StateUrlAction> = (
     state = initialState,
     action
 ) => {
