@@ -14,6 +14,7 @@
 ## Pre requisitos para ejecutar 📋
 
 - Instalar la extensión Access-Control-Allow-Origin en chrome.
+- Se puede utilizar URLS como: www.google.com, https://localhost:8080, http://google.com
 
 ## Instalar dependencias 🔨
 
