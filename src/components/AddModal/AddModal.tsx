@@ -1,41 +1,70 @@
-import React, { useState } from 'react';
-import { Box, Button, Grid, Modal, TextField } from '@mui/material';
+import React from 'react';
+import {Box, Button, Grid, Modal, TextField} from '@mui/material';
+import {Formik, Field, Form, ErrorMessage} from 'formik';
+import * as Yup from 'yup';
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
-  onAdd: (url: string) => void;
+  onAdd: (url: string, name: string) => void;
 }
 
-const AddModal: React.FC<ModalProps> = ({ open, onClose, onAdd }) => {
-  const [url, setUrl] = useState('');
+const AddModal: React.FC<ModalProps> = ({open, onClose, onAdd}) => {
+  const initialValues = {
+    url: '',
+    name: '',
+  };
 
-  const handleAdd = () => {
-    onAdd(url);
-    setUrl('');
+  const validationSchema = Yup.object({
+    url: Yup.string()
+        .required('URL es requerida'),
+    name: Yup.string().required('Nombre es requerido'),
+  });
+
+  const handleSubmit = (values: { url: string; name: string }) => {
+    onAdd(values.url, values.name);
     onClose();
   };
 
   return (
       <Modal open={open} onClose={onClose}>
-        <Box className={"modal-add"}>
+        <Box className={'modal-add'}>
           <h2>Ingresa la URL</h2>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
-                  label="URL"
-                  variant="outlined"
-                  fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} container justifyContent="center">
-              <Button variant="contained" color="primary" onClick={handleAdd}>
-                Verificar
-              </Button>
-            </Grid>
-          </Grid>
+          <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+          >
+            <Form>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Field
+                      name="name"
+                      as={TextField}
+                      label="Nombre"
+                      variant="outlined"
+                      fullWidth
+                  />
+                  <ErrorMessage name="name" component="div" className="error-message"/>
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                      name="url"
+                      as={TextField}
+                      label="URL"
+                      variant="outlined"
+                      fullWidth
+                  />
+                  <ErrorMessage name="url" component="div" className="error-message"/>
+                </Grid>
+                <Grid item xs={12} container justifyContent="center">
+                  <Button variant="contained" color="primary" type="submit">
+                    Verificar
+                  </Button>
+                </Grid>
+              </Grid>
+            </Form>
+          </Formik>
         </Box>
       </Modal>
   );

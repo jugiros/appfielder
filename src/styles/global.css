@@ -34,3 +34,7 @@ body {
   color: green;
   padding: 23px 0px 0px 0px !important;
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+}
